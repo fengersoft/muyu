@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<title>电子木鱼</title>
+        </head>
+        <style>
+            body {
+                background-color: #000000;
+                color: #ffffff;
+            }
+			.muyu{
+				width: 171px;
+				height: 128px;
+				display: block;
+				cursor: url("./image/muyugun.png") ,auto;
+				position: absolute;
+				left: calc(50% - 85px);
+				bottom: calc(50% - 64px);
+			}
+			.muyu_click{
+				width: 151px;
+				height: 108px;
+				display: block;
+				cursor: url("./image/muyugun.png") ,auto;
+				position: absolute;
+				left: calc(50% - 75px);
+				bottom: calc(50% - 54px);
+			}
+			.info
+			{
+				color: white;
+				position: absolute;
+				top: calc(50% - 120px);
+				left: calc(50% - 85px);
+				width: 171px;
+				text-align: center;
+				font-size: 24px;
+				animation: floatUp 1s ease-in-out forwards;
+				
+			}
+			@keyframes floatUp {
+				0%{
+					color: white;
+					position: absolute;
+					top: calc(50% - 120px);
+					left: calc(50% - 85px);
+					width: 171px;
+					text-align: center;
+					font-size: 24px;
+					opacity: 100%;
+				}
+				100%{
+					color: white;
+					position: absolute;
+					top: calc(50% - 320px);
+					left: calc(50% - 85px);
+					width: 171px;
+					text-align: center;
+					font-size: 12px;
+					opacity: 0%;
+				}
+				
+			}
+        </style>
+        <body onkeypress="onMuyuPress(event)">
+			
+            <img class="muyu" id="muyu" src="./image/muyu.png" onclick="onMuyuClick()" onmousedown="onMuyuMouseDown()"
+			 onmouseup="onMuyuMouseUp()" />
+			<script>
+				function onMuyuPress(event)
+				{
+					let keyCode = event.keyCode; // 获取按键编号
+					          if (keyCode==32)
+							  {
+								  onMuyuMouseDown();
+								  onMuyuClick();
+								  onMuyuMouseUp();
+							  }
+				}
+				
+				function onMuyuClick()
+				{
+					const audio=new Audio("./sound/sound02.mp3");
+					audio.play();
+					let div=document.createElement('div');
+					var randomNum = Math.floor(Math.random() * 10);
+					let text="功德+1";
+					if(randomNum===0)
+					{
+						text="快乐+1";
+					}else if (randomNum===2)
+					{
+						text="顺利+1";
+					}else if (randomNum===3)
+					{
+						text="平安+1";
+					}
+					else if (randomNum===4)
+					{
+						text="努力+1";
+					}
+					else if (randomNum===5)
+					{
+						text="美满+1";
+					}
+					else if (randomNum===6)
+					{
+						text="安康+1";
+					}
+					else if (randomNum===7)
+					{
+						text="爱情+1";
+					}
+					else if (randomNum===8)
+					{
+						text="幸运+1";
+					}
+					else if (randomNum===9)
+					{
+						text="财富+1";
+					}
+					
+					div.innerHTML='<div class="info">'+text+'</div>';
+					document.body.appendChild(div);
+					let divs=document.getElementsByClassName('info');
+					console.log(divs.length);
+					while(divs.length>=10)
+					{
+						div=divs[0];
+						div.innerHTML="";
+						div.remove();
+						
+					}
+					
+					
+					
+				}
+				function onMuyuMouseDown()
+				{
+					let muyu=document.getElementById('muyu');
+					muyu.classList.add('muyu_click');
+				}
+				function onMuyuMouseUp()
+				{
+					let muyu=document.getElementById('muyu');
+					muyu.classList.remove('muyu_click');
+				}
+			</script>
+			
+        </body>
+</html>
